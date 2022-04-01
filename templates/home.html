@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta lang="en">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,15 +12,13 @@
 </head>
 <body>
   
-    <div>
-        <h1>Hi! This going to be a household chores web applicaction</h1>
-    </div>
+
     <main>
         <div>
-        {% with messages = get_flashed_messages() %}
+        {% with messages = get_flashed_messages(with_categories =true) %}
             {% if messages %}
-                {% for msg in messages %}
-                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                {% for categories, msg in messages %}
+                <div class="alert alert-{{categories}} alert-dismissible fade show" role="alert">
                     <strong>{{msg}}</strong>.
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                   </div>
@@ -28,35 +27,42 @@
         {% endwith %}
         </div>
         <section class="glass">
-            <div class="list">
-                <label for="task_name">HOUSE SHOPPING MANAGEMENT</label>
-                <form method='POST' target="_parent" action='/add'>
-                    <label>Item Name</label><br>
-                    <input type= "text"  name="task"><br>
-                    <input type="submit" value="ADD ITEM">
-                </form>
-            
+            <label for="task_name">PERSONAL LIST</label>
+                <div class="items_controlers">
+                    <div class="add_item_form">
+                        <form method='post' target="_parent" action='/add'>
+                            <label>Item Name</label><br>
+                            <input type= "text"  name="task"><br>
+                            <button type="submit" class="btn btn-primary">ADD Item</button>
+                        </form>
+                    </div>
 
-                <div>
-                    <ul>
-                        {% for tasks in tasks %}
-                        <li> <input type= "checkbox"> {{ tasks.name }} </li>
-                        {% endfor %}
-                    </ul>
+                    <div class="todo_items" >
+                            {% for tasks in tasks %}
+                            <div class="card" style="background-color: transparent;">
+                                <div class="card-body" >
+                                    <p style="font-size: 24px;"> {{ tasks.name }} 
+
+                                    {% if tasks.compleate %}
+                                    <span class="badge bg-primary">Complete</span>
+                                    {% else %}
+                                    <span class="badge bg-secondary">Complete</span>
+                                    {% endif %}
+                                    </p>
+                                    <a type="button" class="btn btn-success" href="update/{{ tasks.id }}">Completed</a>
+                                    <a type="button" class="btn btn-danger" href="delete/{{ tasks.id }}">Delete</a>
+                                </div>
+                            </div>
+                            {% endfor %}
+
+                    </div>
                 </div>
-            </div>
 
 
             {% block content %}
             {% endblock %}
         </section>
     </main>
-    
-    <div class="circle1"></div>
-    <div class="circle2"></div>
-    <div class="circle3"></div>
-    <div class="circle4"></div>
-    <div class="circle5"></div>
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
 </html>
