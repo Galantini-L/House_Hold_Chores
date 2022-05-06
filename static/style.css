@@ -4,14 +4,9 @@
     box-sizing: border-box;
 }
 
-.test1{
-    color: aqua;
-    font-family: 'Courier New', Courier, monospace;
-}
-
 main{
     min-height: 100vh;
-    background:linear-gradient(to right top, #aca495, #615e57);
+    background:linear-gradient(to right top, #FCBF49, #c78a0f);
     display:flex;
     align-items: center;
     justify-content: center;

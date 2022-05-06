@@ -1,6 +1,7 @@
+import sqlite3
 from flask import Flask
 from views import views
-import secrets
+import secrets, sqlalchemy
 
 
 app = Flask(__name__)
