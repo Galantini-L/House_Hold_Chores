@@ -1,6 +1,4 @@
 *{
-    margin: 0;
-    padding: 0;
     box-sizing: border-box;
 }
 
@@ -21,7 +19,7 @@ main{
     background: linear-gradient(to right bottom, rgba(255,255,255,0.4), rgba(255,255,255,0.2));
     border-radius: 2.3rem;
     backdrop-filter: blur(2rem);
-    margin: 4pc;
+    margin: 4px;
     display: flex;
     flex-direction: column;
 }
@@ -30,12 +28,18 @@ main{
     font-size: 40px;
     text-align: center;
 }
-.items_controlers{
-    display: flex;
-    padding: 2rem 2rem;
-    flex-direction: column;
+[name=task]{
+    border: none;
+    width: 10rem;
+    border-radius: 5px;
+    margin: 1rem 0 1rem 0;
 }
-
-h1{
-    text-align: center;
+.items_controlers{
+    padding: 2rem;
+}
+.todo_items{
+    margin-top: 1rem;
+}
+.card{
+    margin-bottom: 0.1rem;
 }
